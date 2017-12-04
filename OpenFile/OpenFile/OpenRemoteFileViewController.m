@@ -48,8 +48,9 @@
 #pragma mark - Web代理
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    if(!openFileWebView.isLoading){
     NSURL *targetURL = [NSURL URLWithString:self.fileURLString];
-    
+
     NSString *docPath = [self documentsDirectoryPath];
     NSString *pathToDownloadTo = [NSString stringWithFormat:@"%@/%@", docPath, [targetURL lastPathComponent]];
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -75,6 +76,7 @@
     }
 
     NSLog(@"webViewDidFinishLoad");
+    }
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
